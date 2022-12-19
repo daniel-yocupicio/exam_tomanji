@@ -64,4 +64,6 @@ buck-out/
 /vendor/bundle/
 
 #updates
-src/
+src/const/
+src/components/Background
+src/components/SVGIcons
