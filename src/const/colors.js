@@ -30,8 +30,10 @@ const colors = {
     green: '#84E052',
   },
   texts: {
-    white: '#FFFFFF',
+    blue: '#38B3E0',
     gray1: '#E2E0E0',
+    gray2: '#979797',
+    white: '#FFFFFF',
   },
 };
 

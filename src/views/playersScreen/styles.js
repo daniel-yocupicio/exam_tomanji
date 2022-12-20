@@ -2,17 +2,13 @@ import {StyleSheet} from 'react-native';
 import colors from '../../const/colors';
 
 const styles = StyleSheet.create({
-  screenSize: {
-    height: '100%',
-    width: '100%',
-  },
   logo: {
     marginTop: '9.976%',
     alignSelf: 'center',
   },
   confirmButton: {
     backgroundColor: colors.buttons.blue,
-    width: 302,
+    width: '80.54%',
     alignSelf: 'center',
     borderRadius: 4,
     paddingVertical: 17,
