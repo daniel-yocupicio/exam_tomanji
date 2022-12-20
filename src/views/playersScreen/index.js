@@ -3,12 +3,14 @@ import {Image, TouchableOpacity, Text} from 'react-native';
 import LayOutGoBack from '../../components/atoms/LayOutGoBack';
 import Background from '../../components/atoms/Background';
 import PlayersList from '../../components/molecules/PlayersList';
+import AddPlayerModal from '../../components/molecules/AddPlayerModal';
 import styles from './styles';
 
 export default function Players() {
   return (
     <LayOutGoBack>
       <Background />
+      <AddPlayerModal show={true} />
       <Image
         source={require('../../assets/images/logo.png')}
         style={styles.logo}
