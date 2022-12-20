@@ -1,12 +1,11 @@
 import React from 'react';
-import {Modal, Text, TouchableOpacity, View} from 'react-native';
-import NamePlayers from '../../atoms/NamePlayers';
-import CloseSVG from '../../../assets/images/+.svg';
+import {View, Text, Modal, TouchableOpacity} from 'react-native';
 import SVGIcons from '../../atoms/SVGIcons';
+import FormEditPlayer from '../../atoms/FormEditPlayer';
+import CloseSVG from '../../../assets/images/+.svg';
 import styles from './styles';
-import FormAddPlayer from '../../atoms/FormAddPlayer';
 
-export default function AddPlayerModal({show}) {
+export default function EditPlayerModal({show}) {
   return (
     <Modal visible={show} transparent={true} animationType="fade">
       <View style={styles.container}>
@@ -14,9 +13,11 @@ export default function AddPlayerModal({show}) {
           <TouchableOpacity style={styles.closeButton}>
             <SVGIcons IconProp={CloseSVG} styles={styles.iconButton} />
           </TouchableOpacity>
-          <Text style={styles.title}>Agregar jugadores</Text>
-          <NamePlayers />
-          <FormAddPlayer />
+          <Text style={styles.title}>Editar nombre</Text>
+          <Text style={styles.description}>
+            Elige una imagen o cambia el nombre de la persona.
+          </Text>
+          <FormEditPlayer />
         </View>
       </View>
     </Modal>

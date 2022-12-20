@@ -6,13 +6,15 @@ import PlayersList from '../../components/molecules/PlayersList';
 import AddPlayerModal from '../../components/molecules/AddPlayerModal';
 import styles from './styles';
 import AddEventModal from '../../components/molecules/AddEventModal';
+import EditPlayerModal from '../../components/molecules/EditPlayerModal';
 
 export default function Players() {
   return (
     <LayOutGoBack>
       <Background />
       <AddPlayerModal show={false} />
-      <AddEventModal show={true} />
+      <AddEventModal show={false} />
+      <EditPlayerModal show={true} />
       <Image
         source={require('../../assets/images/logo.png')}
         style={styles.logo}
