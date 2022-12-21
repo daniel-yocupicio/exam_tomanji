@@ -1,16 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Text, Modal, TouchableOpacity, TextInput} from 'react-native';
 import SVGIcons from '../../atoms/SVGIcons';
 import CloseSVG from '../../../assets/images/+.svg';
 import styles from './styles';
 import EventImage from '../../atoms/EventImage';
+import {UIContext} from '../../../context';
 
-export default function AddEventModal({show}) {
+export default function AddEventModal() {
+  const {isModal2Open, modalAddEvent} = useContext(UIContext);
+
   return (
-    <Modal visible={show} transparent={true} animationType="fade">
+    <Modal visible={isModal2Open} transparent={true} animationType="fade">
       <View style={styles.container}>
         <View style={styles.subcontainer}>
-          <TouchableOpacity style={styles.closeButton}>
+          <TouchableOpacity style={styles.closeButton} onPress={modalAddEvent}>
             <SVGIcons IconProp={CloseSVG} styles={styles.iconButton} />
           </TouchableOpacity>
           <EventImage />

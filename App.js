@@ -8,9 +8,14 @@
 
 import React from 'react';
 import Navigation from './src/navigation';
+import {UIProvider} from './src/context';
 
 const App = () => {
-  return <Navigation />;
+  return (
+    <UIProvider>
+      <Navigation />
+    </UIProvider>
+  );
 };
 
 export default App;
