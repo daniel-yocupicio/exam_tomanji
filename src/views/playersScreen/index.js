@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {Image, TouchableOpacity, Text} from 'react-native';
 import LayOutGoBack from '../../components/atoms/LayOutGoBack';
 import Background from '../../components/atoms/Background';
@@ -13,6 +13,12 @@ export default function Players({navigation}) {
   const {modalAddEvent} = useContext(UIContext);
   const {players} = useContext(PlayersContext);
 
+  const checkPlayers = () => {
+    if (players.length > 0) {
+      modalAddEvent();
+    }
+  };
+
   return (
     <LayOutGoBack navigation={navigation}>
       <Background />
@@ -24,7 +30,11 @@ export default function Players({navigation}) {
         style={styles.logo}
       />
       <PlayersList players={players} navigation={navigation} />
-      <TouchableOpacity style={styles.confirmButton} onPress={modalAddEvent}>
+      <TouchableOpacity
+        style={
+          players.length === 0 ? styles.confirmButton : styles.confirmButton2
+        }
+        onPress={checkPlayers}>
         <Text style={styles.confirmText}>CONFIRMAR</Text>
       </TouchableOpacity>
     </LayOutGoBack>
