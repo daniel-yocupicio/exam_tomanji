@@ -6,25 +6,42 @@ import LibrarySVG from '../../../assets/images/library.svg';
 import ShowImage from '../ShowImage';
 import SVGIcons from '../SVGIcons';
 import styles from './styles';
-import {PlayersContext, UIContext} from '../../../context';
+import {EventContext, PlayersContext, UIContext} from '../../../context';
 import {getUrl} from '../../../utils';
 
-export default function FormEditPlayer() {
+export default function FormEditPlayer({edit = false}) {
   const {playerSelected, updatePlayerSelected, savePlayer} =
     useContext(PlayersContext);
+  const {selectPlayer, updateSelectPlayer, saveSelectPlayer} =
+    useContext(EventContext);
+  console.log(selectPlayer);
   const {modalEditPlayers} = useContext(UIContext);
-  const [name, setName] = useState(playerSelected.player[0].name);
-  const [image, setImage] = useState(playerSelected.player[0].image);
+  const [name, setName] = useState(
+    edit ? selectPlayer.player[0].name : playerSelected.player[0].name,
+  );
+  const [image, setImage] = useState(
+    edit ? selectPlayer.player[0].image : playerSelected.player[0].image,
+  );
   const [openTooltip, setOpenTooltip] = useState(false);
 
   const updatePlayerValues = (value1, value2) => {
     setName(value1);
     setImage(value2);
-    updatePlayerSelected(name, image);
+    if (edit) {
+      updateSelectPlayer(name, image);
+    } else {
+      updatePlayerSelected(name, image);
+    }
   };
 
   const saveNewPlayerValues = () => {
-    savePlayer(name, image);
+    if (edit) {
+      saveSelectPlayer(name, image);
+    } else {
+      savePlayer(name, image);
+    }
+    setImage('');
+    setName('');
     modalEditPlayers();
   };
 

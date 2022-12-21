@@ -14,10 +14,10 @@ export default function PlayerCard({player, count, edit = false}) {
   const selectPlayerToUpdate = () => {
     if (edit) {
       modalEditPlayers();
-      selectPlayer(count - 1);
+      selectPlayerEvent(count - 1);
     } else {
       modalEditPlayers();
-      selectPlayerEvent(count - 1);
+      selectPlayer(count - 1);
     }
   };
 

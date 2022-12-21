@@ -8,6 +8,10 @@ export const eventReducer = (state, action) => {
       return {...state, selectPlayer: action.payload};
     case '[Events] - delete player':
       return {...state, event: action.payload};
+    case '[Event] - update select player':
+      return {...state, selectPlayer: action.payload};
+    case '[Event] - update event player':
+      return {...state, event: {...state.event, players: action.payload}};
 
     default:
       return state;

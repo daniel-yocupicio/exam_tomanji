@@ -7,7 +7,7 @@ import styles from './styles';
 import FormAddPlayer from '../../atoms/FormAddPlayer';
 import {PlayersContext, UIContext} from '../../../context';
 
-export default function AddPlayerModal() {
+export default function AddPlayerModal({edit}) {
   const {isModal1Open, modalAddPlayers} = useContext(UIContext);
   const {addPlayers} = useContext(PlayersContext);
   const [newPlayers, setNewPlayers] = useState([]);

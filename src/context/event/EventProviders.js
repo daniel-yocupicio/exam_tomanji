@@ -32,7 +32,6 @@ export const EventProvider = ({children}) => {
     dispatch({type: '[Events] - select event', payload: event});
   };
 
-  const editEventPlayer = (index, player) => {};
   const deleteEventPlayer = index => {
     const newArray = state.event.players.filter(
       (_, index2) => index !== index2,
@@ -46,15 +45,30 @@ export const EventProvider = ({children}) => {
     dispatch({type: '[Event] - select player', payload: {player, index}});
   };
 
+  const updateSelectPlayer = (name, image) => {
+    const payload = {
+      index: state.selectPlayer.index,
+      player: [{name, image}],
+    };
+    dispatch({type: '[Event] - update select player', payload});
+  };
+
+  const saveSelectPlayer = (name, image) => {
+    const newArray = state.event.players;
+    newArray[state.selectPlayer.index] = {name, image};
+    dispatch({type: '[Event] - update event player', payload: newArray});
+  };
+
   return (
     <EventContext.Provider
       value={{
         ...state,
         addEvent,
         selectEvent,
-        editEventPlayer,
         deleteEventPlayer,
         selectPlayerEvent,
+        updateSelectPlayer,
+        saveSelectPlayer,
       }}>
       {children}
     </EventContext.Provider>

@@ -1,6 +1,8 @@
 import React, {useContext} from 'react';
 import {View, Image, TouchableOpacity, Text} from 'react-native';
 import Background from '../../components/atoms/Background';
+import AddPlayerModal from '../../components/molecules/AddPlayerModal';
+import EditPlayerModal from '../../components/molecules/EditPlayerModal';
 import PlayersList from '../../components/molecules/PlayersList';
 import {EventContext} from '../../context';
 import styles from './styles';
@@ -11,6 +13,8 @@ export default function ResumeEventScreen({navigation, route}) {
   return (
     <View style={styles.screenContainer}>
       <Background />
+      <EditPlayerModal edit={true} />
+      <AddPlayerModal edit={true} />
       <View style={styles.flatListContainer}>
         <Image
           source={require('../../assets/images/logo.png')}
