@@ -6,7 +6,7 @@ import SVGIcons from '../SVGIcons';
 import styles from './styles';
 import {UIContext} from '../../../context';
 
-export default function NoPlayers() {
+export default function NoPlayers({navigation}) {
   const {modalAddPlayers} = useContext(UIContext);
 
   return (
@@ -16,7 +16,9 @@ export default function NoPlayers() {
       <TouchableOpacity onPress={modalAddPlayers}>
         <Text style={styles.textAddPlayer}>+ Agregar jugador</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.historyButton}>
+      <TouchableOpacity
+        style={styles.historyButton}
+        onPress={() => navigation.navigate('history1')}>
         <SVGIcons IconProp={HistorySVG} styles={styles.historyIcon} />
         <Text style={styles.historyText}>Historial Jugadores</Text>
       </TouchableOpacity>

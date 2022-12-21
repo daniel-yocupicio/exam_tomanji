@@ -5,7 +5,7 @@ import NoPlayers from '../../atoms/NoPlayers';
 import PlayerCard from '../../atoms/PlayerCard';
 import styles from './styles';
 
-export default function PlayersList({players}) {
+export default function PlayersList({players, navigation}) {
   const {modalAddPlayers} = useContext(UIContext);
   return (
     <View style={styles.container}>
@@ -23,7 +23,7 @@ export default function PlayersList({players}) {
           </TouchableOpacity>
         </View>
       ) : (
-        <NoPlayers />
+        <NoPlayers navigation={navigation} />
       )}
     </View>
   );
