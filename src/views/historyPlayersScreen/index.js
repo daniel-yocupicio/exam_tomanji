@@ -1,11 +1,18 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import LayOutGoBack from '../../components/atoms/LayOutGoBack';
 import Background from '../../components/atoms/Background';
 import styles from './styles';
+import {EventContext} from '../../context';
 
 export default function HistoryPlayers({navigation, route}) {
+  const {selectEvent} = useContext(EventContext);
   const {dateEvent, nameEvent, photoEvent, players} = route.params.data;
+
+  const selectAEvent = () => {
+    selectEvent({players, index: route.params.index});
+    navigation.navigate('resume');
+  };
 
   return (
     <LayOutGoBack navigation={navigation}>
@@ -37,9 +44,7 @@ export default function HistoryPlayers({navigation, route}) {
           )}
         />
       </View>
-      <TouchableOpacity
-        style={styles.btn}
-        onPress={() => navigation.navigate('resume', {players})}>
+      <TouchableOpacity style={styles.btn} onPress={selectAEvent}>
         <Text style={styles.textbtn}>Seleccionar</Text>
       </TouchableOpacity>
     </LayOutGoBack>

@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import styles from './styles';
 
-export default function EventCard({data, navigation}) {
+export default function EventCard({data, navigation, index}) {
   return (
     <View style={styles.container}>
       <View>
@@ -13,7 +13,7 @@ export default function EventCard({data, navigation}) {
       </View>
       <TouchableOpacity
         style={styles.btn}
-        onPress={() => navigation.navigate('history2', {data})}>
+        onPress={() => navigation.navigate('history2', {data, index})}>
         <Text style={styles.textbtn}>Ver</Text>
       </TouchableOpacity>
     </View>

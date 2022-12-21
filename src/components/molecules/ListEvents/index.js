@@ -11,7 +11,7 @@ export default function ListEvents({navigation}) {
     <FlatList
       data={events}
       renderItem={({item, index}) => (
-        <EventCard data={item} navigation={navigation} />
+        <EventCard data={item} navigation={navigation} index={index} />
       )}
       style={styles.container}
     />

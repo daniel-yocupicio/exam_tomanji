@@ -14,7 +14,7 @@ export default function PlayersList({players, navigation, edit = false}) {
           <FlatList
             data={players}
             renderItem={({item, index}) => (
-              <PlayerCard count={index + 1} player={item} />
+              <PlayerCard count={index + 1} player={item} edit={edit} />
             )}
             style={styles.flatlistSize}
           />

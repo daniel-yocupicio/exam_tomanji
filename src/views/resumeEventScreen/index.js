@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Image, TouchableOpacity, Text} from 'react-native';
 import Background from '../../components/atoms/Background';
 import PlayersList from '../../components/molecules/PlayersList';
+import {EventContext} from '../../context';
 import styles from './styles';
 
 export default function ResumeEventScreen({navigation, route}) {
+  const {event} = useContext(EventContext);
+
   return (
     <View style={styles.screenContainer}>
       <Background />
@@ -16,7 +19,7 @@ export default function ResumeEventScreen({navigation, route}) {
         <View style={styles.backFlatList}>
           <View style={styles.marginTop}>
             <PlayersList
-              players={route.params.players}
+              players={event.players}
               navigation={navigation}
               edit={true}
             />

@@ -11,6 +11,8 @@ const EVENT_INITIAL_STATE = {
   //  photoEvent: '',
   // }
   events: [],
+  event: null,
+  selectPlayer: null,
 };
 
 export const EventProvider = ({children}) => {
@@ -26,11 +28,33 @@ export const EventProvider = ({children}) => {
     dispatch({type: '[Events] - add event', payload: payload});
   };
 
+  const selectEvent = event => {
+    dispatch({type: '[Events] - select event', payload: event});
+  };
+
+  const editEventPlayer = (index, player) => {};
+  const deleteEventPlayer = index => {
+    const newArray = state.event.players.filter(
+      (_, index2) => index !== index2,
+    );
+    const payload = {...state.event, players: newArray};
+    dispatch({type: '[Events] - delete player', payload});
+  };
+
+  const selectPlayerEvent = index => {
+    const player = state.event.players.filter((_, index2) => index === index2);
+    dispatch({type: '[Event] - select player', payload: {player, index}});
+  };
+
   return (
     <EventContext.Provider
       value={{
         ...state,
         addEvent,
+        selectEvent,
+        editEventPlayer,
+        deleteEventPlayer,
+        selectPlayerEvent,
       }}>
       {children}
     </EventContext.Provider>
