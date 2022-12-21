@@ -10,6 +10,8 @@ export const playersReducer = (state, action) => {
       return {...state, playerSelected: null};
     case '[Players] - update player':
       return {...state, players: action.payload};
+    case '[Players] - reset players':
+      return {...state, players: []};
 
     default:
       return state;

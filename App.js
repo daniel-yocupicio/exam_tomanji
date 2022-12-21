@@ -8,15 +8,17 @@
 
 import React from 'react';
 import Navigation from './src/navigation';
-import {UIProvider, PlayersProvider} from './src/context';
+import {UIProvider, PlayersProvider, EventProvider} from './src/context';
 
 const App = () => {
   return (
-    <PlayersProvider>
-      <UIProvider>
-        <Navigation />
-      </UIProvider>
-    </PlayersProvider>
+    <EventProvider>
+      <PlayersProvider>
+        <UIProvider>
+          <Navigation />
+        </UIProvider>
+      </PlayersProvider>
+    </EventProvider>
   );
 };
 

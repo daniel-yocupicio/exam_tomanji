@@ -43,6 +43,10 @@ export const PlayersProvider = ({children}) => {
     dispatch({type: '[Players] - update player', payload: newArray});
   };
 
+  const resetPlayers = () => {
+    dispatch({type: '[Players] - reset players'});
+  };
+
   return (
     <PlayersContext.Provider
       value={{
@@ -52,6 +56,7 @@ export const PlayersProvider = ({children}) => {
         selectPlayer,
         updatePlayerSelected,
         savePlayer,
+        resetPlayers,
       }}>
       {children}
     </PlayersContext.Provider>

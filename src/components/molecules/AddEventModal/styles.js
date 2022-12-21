@@ -70,6 +70,23 @@ const styles = StyleSheet.create({
     lineHeight: 24.55,
     alignSelf: 'center',
   },
+  none: {
+    display: 'none',
+  },
+  warning: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignSelf: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+  warningText: {
+    color: colors.texts.red,
+    fontSize: 14,
+    fontWeight: '400',
+    lineHeight: 19,
+    marginLeft: 3.35,
+  },
 });
 
 export default styles;
