@@ -34,22 +34,6 @@ const styles = StyleSheet.create({
     top: -10,
   },
   iconButton: {},
-  btnConf: {
-    backgroundColor: colors.buttons.green,
-    width: '80.54%',
-    alignSelf: 'center',
-    marginTop: 24.5,
-    borderRadius: 4,
-    paddingVertical: 7.34,
-    alignItems: 'center',
-    marginBottom: 18,
-  },
-  textConf: {
-    color: colors.texts.white,
-    fontSize: 18,
-    fontWeight: '700',
-    lineHeight: 24.55,
-  },
 });
 
 export default styles;
