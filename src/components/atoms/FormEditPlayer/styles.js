@@ -65,6 +65,7 @@ const styles = (value1 = false) =>
       marginLeft: 3.35,
     },
     tooltip: {
+      display: value1 ? 'flex' : 'none',
       position: 'absolute',
       width: '126%',
       top: 50,

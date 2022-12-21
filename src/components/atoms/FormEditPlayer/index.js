@@ -1,59 +1,107 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
 import {View, TextInput, Image, Text, TouchableOpacity} from 'react-native';
-// import Tooltip from 'rn-tooltip';
 import EditSVG from '../../../assets/images/edit.svg';
 import AlertSVG from '../../../assets/images/alert.svg';
 import LibrarySVG from '../../../assets/images/library.svg';
+import ShowImage from '../ShowImage';
 import SVGIcons from '../SVGIcons';
 import styles from './styles';
+import {PlayersContext, UIContext} from '../../../context';
+import {getUrl} from '../../../utils';
 
 export default function FormEditPlayer() {
+  const {playerSelected, updatePlayerSelected, savePlayer} =
+    useContext(PlayersContext);
+  const {modalEditPlayers} = useContext(UIContext);
+  const [name, setName] = useState(playerSelected.player[0].name);
+  const [image, setImage] = useState(playerSelected.player[0].image);
+  const [openTooltip, setOpenTooltip] = useState(false);
+
+  const updatePlayerValues = (value1, value2) => {
+    setName(value1);
+    setImage(value2);
+    updatePlayerSelected(name, image);
+  };
+
+  const saveNewPlayerValues = () => {
+    savePlayer(name, image);
+    modalEditPlayers();
+  };
+
   return (
     <View style={styles().container}>
-      <View style={styles(true).warning}>
+      <View style={styles(name === '').warning}>
         <SVGIcons IconProp={AlertSVG} styles={{}} />
         <Text style={styles().warningText}>Ingrese un nombre</Text>
       </View>
       <View style={styles().imageInput}>
-        <View>
+        <TouchableOpacity onPress={() => setOpenTooltip(!openTooltip)}>
           <SVGIcons IconProp={EditSVG} styles={styles().edit} />
-          <Image
-            source={require('../../../assets/images/logo.png')}
+          <ShowImage
+            image={getUrl(image).url}
+            isWeb={getUrl(image).isWeb}
             style={styles().img}
           />
-        </View>
-        <ImagePicker />
-        <TextInput style={styles().input} placeholder="Escribe nombre" />
+        </TouchableOpacity>
+        <ImagePicker
+          openTooltip={openTooltip}
+          name={name}
+          updatePlayerValues={updatePlayerValues}
+        />
+        <TextInput
+          style={styles().input}
+          placeholder="Escribe nombre"
+          value={name}
+          onChange={e => updatePlayerValues(e.nativeEvent.text, image)}
+        />
       </View>
 
-      <TouchableOpacity style={styles().btn}>
+      <TouchableOpacity style={styles().btn} onPress={saveNewPlayerValues}>
         <Text style={styles().textbtn}>Guardar</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
-const ImagePicker = () => {
+const ImagePicker = ({openTooltip, name, updatePlayerValues}) => {
   return (
-    <View elevation={10} style={styles().tooltip}>
+    <View elevation={10} style={styles(openTooltip).tooltip}>
       <View style={styles().triangle} />
       <View style={styles().tooltipContainer}>
         <Text style={styles().title}>Elige una imagen</Text>
         <View style={styles().images}>
           <View style={styles().imagesRow}>
-            <Image source={require('../../../assets/images/avatar1.png')} />
-            <Image source={require('../../../assets/images/avatar2.png')} />
-            <Image source={require('../../../assets/images/avatar3.png')} />
+            <TouchableOpacity onPress={() => updatePlayerValues(name, '1')}>
+              <Image source={require('../../../assets/images/avatar1.png')} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => updatePlayerValues(name, '2')}>
+              <Image source={require('../../../assets/images/avatar2.png')} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => updatePlayerValues(name, '3')}>
+              <Image source={require('../../../assets/images/avatar3.png')} />
+            </TouchableOpacity>
           </View>
           <View style={styles().imagesRow}>
-            <Image source={require('../../../assets/images/avatar4.png')} />
-            <Image source={require('../../../assets/images/avatar5.png')} />
-            <Image source={require('../../../assets/images/avatar6.png')} />
+            <TouchableOpacity onPress={() => updatePlayerValues(name, '4')}>
+              <Image source={require('../../../assets/images/avatar4.png')} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => updatePlayerValues(name, '5')}>
+              <Image source={require('../../../assets/images/avatar5.png')} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => updatePlayerValues(name, '6')}>
+              <Image source={require('../../../assets/images/avatar6.png')} />
+            </TouchableOpacity>
           </View>
           <View style={styles().imagesRow}>
-            <Image source={require('../../../assets/images/avatar7.png')} />
-            <Image source={require('../../../assets/images/avatar8.png')} />
-            <Image source={require('../../../assets/images/avatar9.png')} />
+            <TouchableOpacity onPress={() => updatePlayerValues(name, '7')}>
+              <Image source={require('../../../assets/images/avatar7.png')} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => updatePlayerValues(name, '8')}>
+              <Image source={require('../../../assets/images/avatar8.png')} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => updatePlayerValues(name, '9')}>
+              <Image source={require('../../../assets/images/avatar9.png')} />
+            </TouchableOpacity>
           </View>
         </View>
         <TouchableOpacity style={styles().openPhotos}>
