@@ -1,28 +1,23 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
 import SVGIcons from '../SVGIcons';
 import styles from './styles';
 import DeleteSVG from '../../../assets/images/x.svg';
 
-export default function NamePlayers() {
+export default function NamePlayers({newPlayers, deletePlayer}) {
   return (
-    <View style={styles.playerContainer}>
-      <View style={styles.player}>
-        <Text style={styles.playerText}>Harley Queen</Text>
-        <SVGIcons IconProp={DeleteSVG} styles={styles.playerIcon} />
+    <ScrollView style={styles.scroll}>
+      <View style={styles.playerContainer}>
+        {newPlayers.map((player, index) => (
+          <TouchableOpacity
+            key={index}
+            style={styles.player}
+            onPress={() => deletePlayer(index)}>
+            <Text style={styles.playerText}>{player}</Text>
+            <SVGIcons IconProp={DeleteSVG} styles={styles.playerIcon} />
+          </TouchableOpacity>
+        ))}
       </View>
-      <View style={styles.player}>
-        <Text style={styles.playerText}>Edo Caroe</Text>
-        <SVGIcons IconProp={DeleteSVG} styles={styles.playerIcon} />
-      </View>
-      <View style={styles.player}>
-        <Text style={styles.playerText}>Tomás</Text>
-        <SVGIcons IconProp={DeleteSVG} styles={styles.playerIcon} />
-      </View>
-      <View style={styles.player}>
-        <Text style={styles.playerText}>Pedro Pascal</Text>
-        <SVGIcons IconProp={DeleteSVG} styles={styles.playerIcon} />
-      </View>
-    </View>
+    </ScrollView>
   );
 }

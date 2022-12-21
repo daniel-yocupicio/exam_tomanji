@@ -1,5 +1,6 @@
 import React, {useReducer} from 'react';
-import {UIContext, uiReducer} from './';
+import {UIContext} from './UIContext';
+import {uiReducer} from './uiReducer';
 
 const UI_INITIAL_STATE = {
   isModal1Open: false,

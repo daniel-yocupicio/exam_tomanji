@@ -8,13 +8,15 @@
 
 import React from 'react';
 import Navigation from './src/navigation';
-import {UIProvider} from './src/context';
+import {UIProvider, PlayersProvider} from './src/context';
 
 const App = () => {
   return (
-    <UIProvider>
-      <Navigation />
-    </UIProvider>
+    <PlayersProvider>
+      <UIProvider>
+        <Navigation />
+      </UIProvider>
+    </PlayersProvider>
   );
 };
 

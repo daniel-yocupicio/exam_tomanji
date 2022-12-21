@@ -28,7 +28,7 @@ const styles = (value1 = false) =>
       justifyContent: 'center',
       width: 34,
       height: 35,
-      backgroundColor: colors.buttons.blue2,
+      backgroundColor: !value1 ? colors.buttons.blue2 : colors.buttons.gray2,
       borderRadius: 5,
     },
     warning: {

@@ -31,6 +31,7 @@ const colors = {
     orange2: '#FB443B',
     green: '#84E052',
     gray: '#EDEDED',
+    gray2: '#B0B0B0',
   },
   texts: {
     blue: '#38B3E0',

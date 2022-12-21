@@ -2,6 +2,9 @@ import {StyleSheet} from 'react-native';
 import colors from '../../../const/colors';
 
 const styles = StyleSheet.create({
+  scroll: {
+    maxHeight: '50%',
+  },
   playerContainer: {
     display: 'flex',
     flexDirection: 'row',
