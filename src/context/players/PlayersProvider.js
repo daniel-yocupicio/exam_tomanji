@@ -15,12 +15,16 @@ export const PlayersProvider = ({children}) => {
       name: player,
       image: getRandom(1, 9).toString(),
     }));
-    console.log(newArray);
     dispatch({type: '[Players] - add players', payload: newArray});
   };
 
+  const deletePlayer = index => {
+    const newArray = state.players.filter((_, index2) => index !== index2);
+    dispatch({type: '[Players] - delete player', payload: newArray});
+  };
+
   return (
-    <PlayersContext.Provider value={{...state, addPlayers}}>
+    <PlayersContext.Provider value={{...state, addPlayers, deletePlayer}}>
       {children}
     </PlayersContext.Provider>
   );

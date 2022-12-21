@@ -20,8 +20,12 @@ export default function AddPlayerModal() {
     setNewPlayers(newPlayers.filter((_, index2) => index !== index2));
   };
 
-  const addNewPlayers = () => {
-    addPlayers(newPlayers);
+  const addNewPlayers = inputValue => {
+    let array = newPlayers;
+    if (inputValue !== '') {
+      array = [...array, inputValue];
+    }
+    addPlayers(array);
     modalAddPlayers();
     setNewPlayers([]);
   };
@@ -40,6 +44,7 @@ export default function AddPlayerModal() {
           <FormAddPlayer
             handlePlayers={handlePlayers}
             addNewPlayers={addNewPlayers}
+            active={newPlayers.length > 0}
           />
         </View>
       </View>

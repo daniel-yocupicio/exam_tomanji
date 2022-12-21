@@ -1,11 +1,12 @@
 import React, {useContext, useMemo} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
-import {UIContext} from '../../../context';
+import {PlayersContext, UIContext} from '../../../context';
 import {getUrl} from '../../../utils';
 import styles from './styles';
 
 export default function PlayerCard({player, count}) {
   const {modalEditPlayers} = useContext(UIContext);
+  const {deletePlayer} = useContext(PlayersContext);
   const url = useMemo(() => getUrl(player.image), [player.image]);
 
   return (
@@ -18,7 +19,7 @@ export default function PlayerCard({player, count}) {
         <Text style={styles.name}>{player.name}</Text>
       </TouchableOpacity>
       <View style={styles.w3}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => deletePlayer(count - 1)}>
           <Text style={styles.x}>x</Text>
         </TouchableOpacity>
       </View>

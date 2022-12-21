@@ -5,7 +5,7 @@ import AddSVG from '../../../assets/images/add.svg';
 import AlertSVG from '../../../assets/images/alert.svg';
 import styles from './styles';
 
-export default function FormAddPlayer({handlePlayers, addNewPlayers}) {
+export default function FormAddPlayer({handlePlayers, addNewPlayers, active}) {
   const [name, setName] = useState('');
   const [showWarning, setShowWarning] = useState(false);
 
@@ -14,6 +14,15 @@ export default function FormAddPlayer({handlePlayers, addNewPlayers}) {
       setShowWarning(false);
       handlePlayers(name);
       setName('');
+    } else {
+      setShowWarning(true);
+    }
+  };
+
+  const saveNames = () => {
+    if (active || name.length > 0) {
+      setShowWarning(false);
+      addNewPlayers(name);
     } else {
       setShowWarning(true);
     }
@@ -41,7 +50,7 @@ export default function FormAddPlayer({handlePlayers, addNewPlayers}) {
           </TouchableOpacity>
         </View>
       </View>
-      <TouchableOpacity style={styles().btnConf} onPress={addNewPlayers}>
+      <TouchableOpacity style={styles().btnConf} onPress={saveNames}>
         <Text style={styles().textConf}>Confirmar</Text>
       </TouchableOpacity>
     </View>
