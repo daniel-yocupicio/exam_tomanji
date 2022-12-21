@@ -37,7 +37,9 @@ export default function HistoryPlayers({navigation, route}) {
           )}
         />
       </View>
-      <TouchableOpacity style={styles.btn}>
+      <TouchableOpacity
+        style={styles.btn}
+        onPress={() => navigation.navigate('resume')}>
         <Text style={styles.textbtn}>Seleccionar</Text>
       </TouchableOpacity>
     </LayOutGoBack>
