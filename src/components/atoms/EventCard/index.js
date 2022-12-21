@@ -13,7 +13,7 @@ export default function EventCard({data, navigation}) {
       </View>
       <TouchableOpacity
         style={styles.btn}
-        onPress={() => navigation.navigate('history2')}>
+        onPress={() => navigation.navigate('history2', {data})}>
         <Text style={styles.textbtn}>Ver</Text>
       </TouchableOpacity>
     </View>
