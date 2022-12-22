@@ -1,4 +1,5 @@
 import React, {useReducer, useEffect} from 'react';
+import {Alert} from 'react-native';
 import {getRandom} from '../../utils';
 import {PlayersContext} from './PlayersContext';
 import {playersReducer} from './playersReducer';
@@ -23,7 +24,7 @@ export const PlayersProvider = ({children}) => {
         });
       });
     } catch (e) {
-      console.log(e);
+      Alert.alert('Error al cargar los datos', '', [{text: 'OK'}]);
     }
   }, []);
 

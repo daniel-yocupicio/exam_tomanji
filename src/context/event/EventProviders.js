@@ -7,12 +7,6 @@ import {setFunction, getFunction} from '../../services';
 import {Alert} from 'react-native';
 
 const EVENT_INITIAL_STATE = {
-  // {
-  //  nameEvent: '',
-  //  dateEvent: 'date', /show 16 marzo 2021
-  //  players: [{name: '', image: ''}],
-  //  photoEvent: '',
-  // }
   events: [],
   event: null,
   selectPlayer: {player: [{name: '', image: '1'}]},
@@ -32,7 +26,7 @@ export const EventProvider = ({children}) => {
         });
       });
     } catch (e) {
-      console.log(e);
+      Alert.alert('Error al cargar los datos', '', [{text: 'OK'}]);
     }
   }, []);
 
@@ -75,7 +69,6 @@ export const EventProvider = ({children}) => {
   const saveSelectPlayer = (name, image) => {
     const newArray = state.event.players;
     newArray[state.selectPlayer.index] = {name, image};
-    console.log(newArray);
     dispatch({type: '[Event] - update event player', payload: newArray});
   };
 

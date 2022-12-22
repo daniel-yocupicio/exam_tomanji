@@ -22,29 +22,22 @@ const setAvatarImage = async (result, handleData, handleDisabled) => {
   if (result.didCancel === true) {
     Alert.alert('Error al cargar la imagen', '', [{text: 'OK'}]);
   } else {
-    console.log(1);
     handleDisabled(true);
-    console.log(2);
     const nameImage = result.assets[0].uri.substring(
       result.assets[0].uri.lastIndexOf('/') + 1,
     );
-    console.log(3);
     const reference = storage().ref(nameImage);
-    console.log(4);
     await reference.putFile(result.assets[0].uri);
-    console.log(5);
-    console.log(handleData, handleDisabled);
     await reference.getDownloadURL().then(urlFirebase => {
       handleData(urlFirebase);
       handleDisabled(false);
     });
-    console.log(6);
   }
 };
 
 const addImage = async (handleData, handleDisabled) => {
   const result = await ImagePickerSelecter.launchImageLibrary();
-  setAvatarImage(result, handleData, handleDisabled).catch(e => console.log(e));
+  setAvatarImage(result, handleData, handleDisabled);
 };
 
 export default function FormEditPlayer({edit = false}) {
