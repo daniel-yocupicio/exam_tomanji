@@ -14,6 +14,7 @@ export default function AddEventModal() {
   const [name, setName] = useState('');
   const [imageEvent, setImageEvent] = useState('');
   const [showWarning, setShowWarning] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   const saveEvent = () => {
     if (name !== '') {
@@ -28,14 +29,33 @@ export default function AddEventModal() {
     }
   };
 
+  const handleImage = url => {
+    setImageEvent(url);
+  };
+
+  const handleDisabled = isdisabled => {
+    setDisabled(isdisabled);
+  };
+
+  const closeModal = () => {
+    setShowWarning(false);
+    setName('');
+    setImageEvent('');
+    modalAddEvent();
+  };
+
   return (
     <Modal visible={isModal2Open} transparent={true} animationType="fade">
       <View style={styles.container}>
         <View style={styles.subcontainer}>
-          <TouchableOpacity style={styles.closeButton} onPress={modalAddEvent}>
+          <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
             <SVGIcons IconProp={CloseSVG} styles={styles.iconButton} />
           </TouchableOpacity>
-          <EventImage />
+          <EventImage
+            handleData={handleImage}
+            url={imageEvent}
+            handleDisabled={handleDisabled}
+          />
           <Text style={styles.title}>Nombre Evento</Text>
           <Text style={styles.description}>
             Guarda la lista de jugadores para el futuro
@@ -50,7 +70,10 @@ export default function AddEventModal() {
             value={name}
             onChange={e => setName(e.nativeEvent.text)}
           />
-          <TouchableOpacity style={styles.btnPlay} onPress={saveEvent}>
+          <TouchableOpacity
+            style={styles.btnPlay}
+            onPress={saveEvent}
+            disabled={disabled}>
             <Text style={styles.textPlay}>A Jugar!</Text>
           </TouchableOpacity>
         </View>

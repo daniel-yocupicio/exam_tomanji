@@ -6,5 +6,4 @@ export function setFunction(collection, id, data) {
 
 export function getFunction(collection, key, operator, value) {
   return firestore().collection(collection).get();
-  //.where(key, operator, value)
 }
