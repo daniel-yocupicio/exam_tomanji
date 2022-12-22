@@ -20,4 +20,4 @@ El estado de la aplicación se maneja con Context Api de react.
 <https://reactjs.org/docs/context.html>
 
 ## Para almacenar los datos:
-Se implementó Firebase para guardar los datos e imágenes de la aplicación.
+Se implementó Firebase para guardar los datos e imágenes de la aplicación. <https://rnfirebase.io/>
