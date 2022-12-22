@@ -72,7 +72,13 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: '8%',
   },
-  img: {width: 86, height: 86, marginBottom: '-5%', marginTop: '-2%'},
+  img: {
+    width: 86,
+    height: 86,
+    marginBottom: '-5%',
+    marginTop: '-2%',
+    borderRadius: 45,
+  },
   img2: {display: 'none'},
   textbtn: {
     color: colors.texts.white,
