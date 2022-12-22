@@ -6,7 +6,7 @@ import styles from './styles';
 import {EventContext} from '../../context';
 
 export default function HistoryPlayers({navigation, route}) {
-  const {selectEvent} = useContext(EventContext);
+  const {selectEvent, events} = useContext(EventContext);
   const {dateEvent, nameEvent, photoEvent, players} = route.params.data;
 
   const selectAEvent = () => {
@@ -34,7 +34,7 @@ export default function HistoryPlayers({navigation, route}) {
       </View>
       <View style={styles.flatListContainer}>
         <FlatList
-          data={players}
+          data={events[route.params.index].players}
           style={photoEvent !== '' ? styles.flatList40 : styles.flatList47}
           renderItem={({item, index}) => (
             <View style={styles.playerContainer}>

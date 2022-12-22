@@ -31,9 +31,9 @@ export default function FormEditPlayer({edit = false}) {
     setName(value1);
     setImage(value2);
     if (edit) {
-      updateSelectPlayer(name, image);
+      updateSelectPlayer(value1, value2);
     } else {
-      updatePlayerSelected(name, image);
+      updatePlayerSelected(value1, value2);
     }
   };
 
