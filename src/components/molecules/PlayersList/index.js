@@ -7,6 +7,7 @@ import styles from './styles';
 
 export default function PlayersList({players, navigation, edit = false}) {
   const {modalAddPlayers} = useContext(UIContext);
+
   return (
     <View style={edit ? null : styles.container}>
       {players.length > 0 ? (

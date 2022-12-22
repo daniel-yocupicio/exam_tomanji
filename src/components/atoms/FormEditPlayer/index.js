@@ -14,7 +14,6 @@ export default function FormEditPlayer({edit = false}) {
     useContext(PlayersContext);
   const {selectPlayer, updateSelectPlayer, saveSelectPlayer} =
     useContext(EventContext);
-  console.log(selectPlayer);
   const {modalEditPlayers} = useContext(UIContext);
   const [name, setName] = useState(
     edit ? selectPlayer.player[0].name : playerSelected.player[0].name,

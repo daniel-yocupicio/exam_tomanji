@@ -1,4 +1,5 @@
 import React, {useReducer} from 'react';
+import {getRandom} from '../../utils';
 import {getNormalDate} from '../../utils/date';
 import {EventContext} from './EventContext';
 import {eventReducer} from './eventReducer';
@@ -59,6 +60,14 @@ export const EventProvider = ({children}) => {
     dispatch({type: '[Event] - update event player', payload: newArray});
   };
 
+  const addPlayersToEvent = arrayPlayers => {
+    const newArray = arrayPlayers.map(player => ({
+      name: player,
+      image: getRandom(1, 9).toString(),
+    }));
+    dispatch({type: '[Event] - add players to event', payload: newArray});
+  };
+
   return (
     <EventContext.Provider
       value={{
@@ -69,6 +78,7 @@ export const EventProvider = ({children}) => {
         selectPlayerEvent,
         updateSelectPlayer,
         saveSelectPlayer,
+        addPlayersToEvent,
       }}>
       {children}
     </EventContext.Provider>
