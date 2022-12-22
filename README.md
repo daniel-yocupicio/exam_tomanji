@@ -16,3 +16,6 @@ Los pasos para ejecutar este repositorio son:
 ## El estado de la aplicacion:
 El estado de la aplicacion se maneja con Context Api de react.
 <https://reactjs.org/docs/context.html>
+
+## Para almacenar los datos:
+Se implemento firebase para guardar los datos e imagenes de la aplicación.
