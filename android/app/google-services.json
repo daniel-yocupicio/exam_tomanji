@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "17589497881",
+    "project_id": "tomanji-e45c0",
+    "storage_bucket": "tomanji-e45c0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17589497881:android:f83271811bb37382f97a88",
+        "android_client_info": {
+          "package_name": "com.tomanji"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "17589497881-r4u0knc8ur0a7ukfgv6n6d4mjort023a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcD2r4BKpGmWEQZ-9Cc6QcIJQZEgEqz1w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "17589497881-r4u0knc8ur0a7ukfgv6n6d4mjort023a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
