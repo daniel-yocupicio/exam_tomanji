@@ -1,5 +1,6 @@
 import React from 'react';
 import {Image} from 'react-native';
+import styles from './styles';
 
 export default function ShowImage({image, isWeb, style = {}}) {
   if (!isWeb) {
@@ -72,7 +73,7 @@ export default function ShowImage({image, isWeb, style = {}}) {
 
   return (
     <Image
-      style={style}
+      style={styles.img}
       source={{
         uri: image,
       }}

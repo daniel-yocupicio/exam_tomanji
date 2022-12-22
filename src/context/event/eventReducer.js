@@ -25,6 +25,8 @@ export const eventReducer = (state, action) => {
         ...state,
         events: action.payload,
       };
+    case '[Events] - loan events':
+      return {...state, events: action.payload};
 
     default:
       return state;

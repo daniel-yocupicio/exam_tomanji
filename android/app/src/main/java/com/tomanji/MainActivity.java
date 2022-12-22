@@ -3,6 +3,7 @@ package com.tomanji;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
+import android.view.KeyEvent;
 
 public class MainActivity extends ReactActivity {
 
@@ -13,6 +14,11 @@ public class MainActivity extends ReactActivity {
   @Override
   protected String getMainComponentName() {
     return "tomanji";
+  }
+
+  @Override
+  public boolean onKeyDown(int keyCode, KeyEvent event) {
+    return true;
   }
 
   /**

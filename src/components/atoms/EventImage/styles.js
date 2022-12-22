@@ -24,6 +24,11 @@ const styles = StyleSheet.create({
     color: colors.texts.blue,
     marginLeft: 5.54,
   },
+  img: {
+    width: 80,
+    height: 80,
+    borderRadius: 45,
+  },
 });
 
 export default styles;

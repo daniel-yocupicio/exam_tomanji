@@ -1,16 +1,12 @@
-import React, {useReducer} from 'react';
+import React, {useEffect, useReducer, useState} from 'react';
 import {getRandom} from '../../utils';
 import {getNormalDate} from '../../utils/date';
 import {EventContext} from './EventContext';
 import {eventReducer} from './eventReducer';
+import {setFunction, getFunction} from '../../services';
+import {Alert} from 'react-native';
 
 const EVENT_INITIAL_STATE = {
-  // {
-  //  nameEvent: '',
-  //  dateEvent: 'date', /show 16 marzo 2021
-  //  players: [{name: '', image: ''}],
-  //  photoEvent: '',
-  // }
   events: [],
   event: null,
   selectPlayer: {player: [{name: '', image: '1'}]},
@@ -18,6 +14,21 @@ const EVENT_INITIAL_STATE = {
 
 export const EventProvider = ({children}) => {
   const [state, dispatch] = useReducer(eventReducer, EVENT_INITIAL_STATE);
+
+  useEffect(() => {
+    try {
+      getFunction('events').then(querySnapshot => {
+        querySnapshot.forEach(documentSnapshot => {
+          dispatch({
+            type: '[Events] - loan events',
+            payload: documentSnapshot.data().data,
+          });
+        });
+      });
+    } catch (e) {
+      Alert.alert('Error al cargar los datos', '', [{text: 'OK'}]);
+    }
+  }, []);
 
   const addEvent = (players, name, image) => {
     const payload = {
@@ -27,6 +38,7 @@ export const EventProvider = ({children}) => {
       photoEvent: image,
     };
     dispatch({type: '[Events] - add event', payload: payload});
+    setFunction('events', '1', {data: [...state.events, payload]});
   };
 
   const selectEvent = event => {
@@ -57,7 +69,6 @@ export const EventProvider = ({children}) => {
   const saveSelectPlayer = (name, image) => {
     const newArray = state.event.players;
     newArray[state.selectPlayer.index] = {name, image};
-    console.log(newArray);
     dispatch({type: '[Event] - update event player', payload: newArray});
   };
 
@@ -73,6 +84,7 @@ export const EventProvider = ({children}) => {
     const allEvents = state.events;
     allEvents[state.event.index].players = state.event.players;
     dispatch({type: '[Event] - update players in event', payload: allEvents});
+    setFunction('events', '1', {data: allEvents});
   };
 
   return (

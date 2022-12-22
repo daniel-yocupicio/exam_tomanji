@@ -7,8 +7,6 @@ import {EventContext} from '../../context';
 
 export default function HistoryPlayers({navigation, route}) {
   const {selectEvent, events} = useContext(EventContext);
-  //const {players} = route.params.data;
-  // nameEvent, photoEvent,
 
   const selectAEvent = () => {
     selectEvent({
