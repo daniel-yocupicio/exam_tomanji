@@ -57,6 +57,7 @@ export const EventProvider = ({children}) => {
   const saveSelectPlayer = (name, image) => {
     const newArray = state.event.players;
     newArray[state.selectPlayer.index] = {name, image};
+    console.log(newArray);
     dispatch({type: '[Event] - update event player', payload: newArray});
   };
 

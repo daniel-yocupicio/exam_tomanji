@@ -7,10 +7,14 @@ import {EventContext} from '../../context';
 
 export default function HistoryPlayers({navigation, route}) {
   const {selectEvent, events} = useContext(EventContext);
-  const {dateEvent, nameEvent, photoEvent, players} = route.params.data;
+  //const {players} = route.params.data;
+  // nameEvent, photoEvent,
 
   const selectAEvent = () => {
-    selectEvent({players, index: route.params.index});
+    selectEvent({
+      players: events[route.params.index].players,
+      index: route.params.index,
+    });
     navigation.navigate('resume');
   };
 
@@ -18,24 +22,34 @@ export default function HistoryPlayers({navigation, route}) {
     <LayOutGoBack navigation={navigation}>
       <Background />
       <View style={styles.headerContainer}>
-        {photoEvent !== '' && (
+        {events[route.params.index].photoEvent !== '' && (
           <Image
             source={{
-              uri: photoEvent,
+              uri: events[route.params.index].photoEvent,
             }}
-            style={photoEvent !== '' ? styles.img : styles.img2}
+            style={
+              events[route.params.index].photoEvent !== ''
+                ? styles.img
+                : styles.img2
+            }
           />
         )}
-        <Text style={styles.nameEvent}>{nameEvent}</Text>
+        <Text style={styles.nameEvent}>
+          {events[route.params.index].nameEvent}
+        </Text>
       </View>
       <View style={styles.listHeaders}>
         <Text style={styles.players}>Jugadores</Text>
-        <Text style={styles.date}>{dateEvent}</Text>
+        <Text style={styles.date}>{events[route.params.index].dateEvent}</Text>
       </View>
       <View style={styles.flatListContainer}>
         <FlatList
           data={events[route.params.index].players}
-          style={photoEvent !== '' ? styles.flatList40 : styles.flatList47}
+          style={
+            events[route.params.index].photoEvent !== ''
+              ? styles.flatList40
+              : styles.flatList47
+          }
           renderItem={({item, index}) => (
             <View style={styles.playerContainer}>
               <Text style={styles.number}>{index + 1}.</Text>

@@ -6,6 +6,7 @@ import styles from './styles';
 
 export default function ListEvents({navigation}) {
   const {events} = useContext(EventContext);
+  console.log(events);
 
   return (
     <FlatList
