@@ -1,8 +1,10 @@
-import React, {useReducer} from 'react';
+import React, {useEffect, useReducer, useState} from 'react';
 import {getRandom} from '../../utils';
 import {getNormalDate} from '../../utils/date';
 import {EventContext} from './EventContext';
 import {eventReducer} from './eventReducer';
+import {setFunction, getFunction} from '../../services';
+import {Alert} from 'react-native';
 
 const EVENT_INITIAL_STATE = {
   // {
@@ -19,6 +21,21 @@ const EVENT_INITIAL_STATE = {
 export const EventProvider = ({children}) => {
   const [state, dispatch] = useReducer(eventReducer, EVENT_INITIAL_STATE);
 
+  useEffect(() => {
+    try {
+      getFunction('events').then(querySnapshot => {
+        querySnapshot.forEach(documentSnapshot => {
+          dispatch({
+            type: '[Events] - loan events',
+            payload: documentSnapshot.data().data,
+          });
+        });
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
+
   const addEvent = (players, name, image) => {
     const payload = {
       nameEvent: name,
@@ -27,6 +44,7 @@ export const EventProvider = ({children}) => {
       photoEvent: image,
     };
     dispatch({type: '[Events] - add event', payload: payload});
+    setFunction('events', '1', {data: [...state.events, payload]});
   };
 
   const selectEvent = event => {
@@ -73,6 +91,7 @@ export const EventProvider = ({children}) => {
     const allEvents = state.events;
     allEvents[state.event.index].players = state.event.players;
     dispatch({type: '[Event] - update players in event', payload: allEvents});
+    setFunction('events', '1', {data: allEvents});
   };
 
   return (
