@@ -6,25 +6,45 @@ import LibrarySVG from '../../../assets/images/library.svg';
 import ShowImage from '../ShowImage';
 import SVGIcons from '../SVGIcons';
 import styles from './styles';
-import {PlayersContext, UIContext} from '../../../context';
+import {EventContext, PlayersContext, UIContext} from '../../../context';
 import {getUrl} from '../../../utils';
 
-export default function FormEditPlayer() {
+export default function FormEditPlayer({edit = false}) {
+  const {selectPlayer, updateSelectPlayer, saveSelectPlayer} =
+    useContext(EventContext);
   const {playerSelected, updatePlayerSelected, savePlayer} =
     useContext(PlayersContext);
   const {modalEditPlayers} = useContext(UIContext);
-  const [name, setName] = useState(playerSelected.player[0].name);
-  const [image, setImage] = useState(playerSelected.player[0].image);
+  console.log(selectPlayer);
+
+  const [name, setName] = useState(
+    edit ? selectPlayer?.player[0]?.name || '' : playerSelected.player[0].name,
+  );
+  const [image, setImage] = useState(
+    edit
+      ? selectPlayer?.player[0]?.image || '1'
+      : playerSelected.player[0].image,
+  );
   const [openTooltip, setOpenTooltip] = useState(false);
 
   const updatePlayerValues = (value1, value2) => {
     setName(value1);
     setImage(value2);
-    updatePlayerSelected(name, image);
+    if (edit) {
+      updateSelectPlayer(value1, value2);
+    } else {
+      updatePlayerSelected(value1, value2);
+    }
   };
 
   const saveNewPlayerValues = () => {
-    savePlayer(name, image);
+    if (edit) {
+      saveSelectPlayer(name, image);
+    } else {
+      savePlayer(name, image);
+    }
+    setImage('');
+    setName('');
     modalEditPlayers();
   };
 
@@ -112,19 +132,3 @@ const ImagePicker = ({openTooltip, name, updatePlayerValues}) => {
     </View>
   );
 };
-
-/**
- *
-
-      <View style={styles().imagepickerContainer}>
-        <View style={styles().pointpopover} />
-        <Text style={styles().title}>Elige una Imagen</Text>
-        <View>
-          <Text>IMGS</Text>
-        </View>
-        <View>
-          <Text>Abrir fotos</Text>
-        </View>
-      </View>
-
- */

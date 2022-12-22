@@ -5,10 +5,11 @@ import CloseSVG from '../../../assets/images/+.svg';
 import SVGIcons from '../../atoms/SVGIcons';
 import styles from './styles';
 import FormAddPlayer from '../../atoms/FormAddPlayer';
-import {PlayersContext, UIContext} from '../../../context';
+import {EventContext, PlayersContext, UIContext} from '../../../context';
 
-export default function AddPlayerModal() {
+export default function AddPlayerModal({edit}) {
   const {isModal1Open, modalAddPlayers} = useContext(UIContext);
+  const {addPlayersToEvent} = useContext(EventContext);
   const {addPlayers} = useContext(PlayersContext);
   const [newPlayers, setNewPlayers] = useState([]);
 
@@ -25,7 +26,11 @@ export default function AddPlayerModal() {
     if (inputValue !== '') {
       array = [...array, inputValue];
     }
-    addPlayers(array);
+    if (edit) {
+      addPlayersToEvent(array);
+    } else {
+      addPlayers(array);
+    }
     modalAddPlayers();
     setNewPlayers([]);
   };

@@ -5,16 +5,17 @@ import NoPlayers from '../../atoms/NoPlayers';
 import PlayerCard from '../../atoms/PlayerCard';
 import styles from './styles';
 
-export default function PlayersList({players, navigation}) {
+export default function PlayersList({players, navigation, edit = false}) {
   const {modalAddPlayers} = useContext(UIContext);
+
   return (
-    <View style={styles.container}>
+    <View style={edit ? null : styles.container}>
       {players.length > 0 ? (
         <View style={styles.containerFlatList}>
           <FlatList
             data={players}
             renderItem={({item, index}) => (
-              <PlayerCard count={index + 1} player={item} />
+              <PlayerCard count={index + 1} player={item} edit={edit} />
             )}
             style={styles.flatlistSize}
           />

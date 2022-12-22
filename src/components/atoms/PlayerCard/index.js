@@ -1,18 +1,32 @@
 import React, {useContext, useMemo} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import {PlayersContext, UIContext} from '../../../context';
+import {EventContext, PlayersContext, UIContext} from '../../../context';
 import ShowImage from '../ShowImage';
 import {getUrl} from '../../../utils';
 import styles from './styles';
 
-export default function PlayerCard({player, count}) {
+export default function PlayerCard({player, count, edit = false}) {
   const {modalEditPlayers} = useContext(UIContext);
   const {deletePlayer, selectPlayer} = useContext(PlayersContext);
+  const {deleteEventPlayer, selectPlayerEvent} = useContext(EventContext);
   const url = useMemo(() => getUrl(player.image), [player.image]);
 
   const selectPlayerToUpdate = () => {
-    modalEditPlayers();
-    selectPlayer(count - 1);
+    if (edit) {
+      modalEditPlayers();
+      selectPlayerEvent(count - 1);
+    } else {
+      modalEditPlayers();
+      selectPlayer(count - 1);
+    }
+  };
+
+  const deleteData = () => {
+    if (edit) {
+      deleteEventPlayer(count - 1);
+    } else {
+      deletePlayer(count - 1);
+    }
   };
 
   return (
@@ -25,7 +39,7 @@ export default function PlayerCard({player, count}) {
         <Text style={styles.name}>{player.name}</Text>
       </TouchableOpacity>
       <View style={styles.w3}>
-        <TouchableOpacity onPress={() => deletePlayer(count - 1)}>
+        <TouchableOpacity onPress={() => deleteData()}>
           <Text style={styles.x}>x</Text>
         </TouchableOpacity>
       </View>

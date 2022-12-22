@@ -5,7 +5,7 @@ import {playersReducer} from './playersReducer';
 
 const PLAYERS_INITIAL_STATE = {
   players: [],
-  playerSelected: null,
+  playerSelected: {player: [{name: '', image: '1'}]},
 };
 
 export const PlayersProvider = ({children}) => {

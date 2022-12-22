@@ -6,7 +6,7 @@ import CloseSVG from '../../../assets/images/+.svg';
 import styles from './styles';
 import {UIContext} from '../../../context';
 
-export default function EditPlayerModal() {
+export default function EditPlayerModal({edit}) {
   const {isModal3Open, modalEditPlayers} = useContext(UIContext);
 
   return (
@@ -22,7 +22,7 @@ export default function EditPlayerModal() {
           <Text style={styles.description}>
             Elige una imagen o cambia el nombre de la persona.
           </Text>
-          <FormEditPlayer />
+          <FormEditPlayer edit={edit} />
         </View>
       </View>
     </Modal>
