@@ -8,7 +8,7 @@ import styles from './styles';
 export default function PlayerCard({player, count, edit = false}) {
   const {modalEditPlayers} = useContext(UIContext);
   const {deletePlayer, selectPlayer} = useContext(PlayersContext);
-  const {editEventPlayer, deleteEventPlayer, selectPlayerEvent} = useContext(EventContext);
+  const {deleteEventPlayer, selectPlayerEvent} = useContext(EventContext);
   const url = useMemo(() => getUrl(player.image), [player.image]);
 
   const selectPlayerToUpdate = () => {

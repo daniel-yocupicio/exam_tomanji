@@ -8,7 +8,7 @@ import {EventContext} from '../../context';
 import styles from './styles';
 
 export default function ResumeEventScreen({navigation, route}) {
-  const {event} = useContext(EventContext);
+  const {event, saveUpdatedEvent} = useContext(EventContext);
 
   return (
     <View style={styles.screenContainer}>
@@ -33,7 +33,7 @@ export default function ResumeEventScreen({navigation, route}) {
       <TouchableOpacity style={styles.btn1} onPress={() => navigation.goBack()}>
         <Text style={styles.textbtn1}>PARTIDAS ANTERIORES</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.btn2}>
+      <TouchableOpacity style={styles.btn2} onPress={saveUpdatedEvent}>
         <Text style={styles.textbtn2}>CONFIRMAR</Text>
       </TouchableOpacity>
     </View>

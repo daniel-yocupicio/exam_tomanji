@@ -10,16 +10,20 @@ import {EventContext, PlayersContext, UIContext} from '../../../context';
 import {getUrl} from '../../../utils';
 
 export default function FormEditPlayer({edit = false}) {
-  const {playerSelected, updatePlayerSelected, savePlayer} =
-    useContext(PlayersContext);
   const {selectPlayer, updateSelectPlayer, saveSelectPlayer} =
     useContext(EventContext);
+  const {playerSelected, updatePlayerSelected, savePlayer} =
+    useContext(PlayersContext);
   const {modalEditPlayers} = useContext(UIContext);
+  console.log(selectPlayer);
+
   const [name, setName] = useState(
-    edit ? selectPlayer.player[0].name : playerSelected.player[0].name,
+    edit ? selectPlayer?.player[0]?.name || '' : playerSelected.player[0].name,
   );
   const [image, setImage] = useState(
-    edit ? selectPlayer.player[0].image : playerSelected.player[0].image,
+    edit
+      ? selectPlayer?.player[0]?.image || '1'
+      : playerSelected.player[0].image,
   );
   const [openTooltip, setOpenTooltip] = useState(false);
 
@@ -128,19 +132,3 @@ const ImagePicker = ({openTooltip, name, updatePlayerValues}) => {
     </View>
   );
 };
-
-/**
- *
-
-      <View style={styles().imagepickerContainer}>
-        <View style={styles().pointpopover} />
-        <Text style={styles().title}>Elige una Imagen</Text>
-        <View>
-          <Text>IMGS</Text>
-        </View>
-        <View>
-          <Text>Abrir fotos</Text>
-        </View>
-      </View>
-
- */

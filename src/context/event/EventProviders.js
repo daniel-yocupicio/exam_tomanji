@@ -13,7 +13,7 @@ const EVENT_INITIAL_STATE = {
   // }
   events: [],
   event: null,
-  selectPlayer: null,
+  selectPlayer: {player: [{name: '', image: '1'}]},
 };
 
 export const EventProvider = ({children}) => {
@@ -68,6 +68,12 @@ export const EventProvider = ({children}) => {
     dispatch({type: '[Event] - add players to event', payload: newArray});
   };
 
+  const saveUpdatedEvent = () => {
+    const allEvents = state.events;
+    allEvents[state.event.index].players = state.event.players;
+    dispatch({type: '[Event] - update players in event', payload: allEvents});
+  };
+
   return (
     <EventContext.Provider
       value={{
@@ -79,6 +85,7 @@ export const EventProvider = ({children}) => {
         updateSelectPlayer,
         saveSelectPlayer,
         addPlayersToEvent,
+        saveUpdatedEvent,
       }}>
       {children}
     </EventContext.Provider>
