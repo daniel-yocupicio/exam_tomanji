@@ -12,6 +12,8 @@ export const playersReducer = (state, action) => {
       return {...state, players: action.payload};
     case '[Players] - reset players':
       return {...state, players: []};
+    case '[Events] - load players':
+      return {...state, players: action.payload};
 
     default:
       return state;
